@@ -7,16 +7,55 @@ Courses
 
 {% block body %}
 
-{% for obj in object_list   %}
-    <li>{{obj.title}}</li>
-{% endfor %}
 
-<ul>
-    {% for course in course_category   %}
-        <li>{{course.title}}</li>
-        {% endfor %}
-        
-</ul>
+<div class="container-md">
+    <div class="my-5">
+        <div class="card text-center">
+            <div class="card-header">
+              welcome
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">LearnersHub</h5>
+              <p class="card-text">Over 1000+ courser in 500+ facalties. We provide 24/7 support. Easy to use tools</p>
+              <a href="#courses" class="btn btn-primary">Let's Start</a>
+            </div>
+            <div class="card-footer text-muted">
+              2 days ago
+            </div>
+        </div>
+    </div>
+    <div id="courses" class="mb-3 py-5">
+        <div class="h4">Courses</div>
+        <div class="pt-3">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for obj in object_list   %}
+                <div class="col">
+                  <div class="card h-100">
+                    <div class="card-img-top"  style="
+                    width:100%;
+                    height:150px;
+                    background-image: url({{obj.coverImg.url}});
+                    background-size: 100% auto;
+                    background-position: center center;
+                    "></div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{obj.title}}</h5>
+                      <p class="card-text">Category: {{obj.category.title}}</p>
+                      <a class="btn btn-primary" href="{{obj.get_absolute_url}}">Go To Course</a>
+                    </div>
+                    <div class="card-footer">
+                      <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 {% endblock body %}
 
 

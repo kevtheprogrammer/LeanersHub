@@ -12,6 +12,7 @@ class CourseCategoryModel(models.Model):
     maker = models.ForeignKey( User,on_delete=models.CASCADE,default=None,related_name="maker" )
     updated = models.DateField(auto_now=True, auto_now_add=False)
     timestamp = models.DateField(auto_now=False, auto_now_add=True)
+    slug   = models.SlugField( default=None )
 
     def __unicode__(self):
         return self.title
@@ -32,6 +33,10 @@ class CourseModel(models.Model):
     updated = models.DateField(auto_now=True, auto_now_add=False)
     timestamp = models.DateField(auto_now=False, auto_now_add=True)
     creator = models.ForeignKey( User,on_delete=models.CASCADE,default=None,related_name="creator" )
+    slug   = models.SlugField( default=None )
+
+    def snippet(self):
+        return f'{self.description[:100]}...'
 
     def __unicode__(self):
         return self.title
@@ -39,8 +44,8 @@ class CourseModel(models.Model):
     def __str__(self): #for python3
         return self.title
 
-    # def get_absolute_url(self):
-    #     return reverse("s:retrieve", kwargs={"id": self.id})
+    def get_absolute_url(self):
+        return reverse("courses:couse-outline", kwargs={"slug": self.slug})
     
     
 class LessonModel(models.Model):
@@ -56,9 +61,18 @@ class LessonModel(models.Model):
     is_published = models.BooleanField(default=False) 
     course = models.ForeignKey( CourseModel,on_delete=models.CASCADE,default=None,related_name="course" )
     author = models.ForeignKey( User,on_delete=models.CASCADE,default=None,related_name="author" )
+    slug   = models.SlugField( default=None )
 
     def __unicode__(self):
         return self.title
 
     def __str__(self): #for python3
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse("courses:lesson", kwargs={"slug1": self.course.slug,"slug": self.slug})
+    
+    def snippet(self):
+        return f'{self.description[:100]}...'
+    
+    
