@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Courses
+{% endblock title %}
+
+
+{% block body %}
+
+{% for obj in object_list   %}
+    <li>{{obj.title}}</li>
+{% endfor %}
+
+<ul>
+    {% for course in course_category   %}
+        <li>{{course.title}}</li>
+        {% endfor %}
+        
+</ul>
+{% endblock body %}
+
+
