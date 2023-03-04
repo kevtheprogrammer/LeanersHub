@@ -1,60 +1,134 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
 Courses
 {% endblock title %}
 
 
 {% block body %}
+<style>
+  #course_id{
+    background: url("{% static 'courses_top.png' %}");
+    width: 100%;
+    height: 480px;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size:  100%;
+  }
+  .largText{
+    font-family: 'Roboto', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+  }
+  .mdtext{
+    display: none;
+  }
+  .smtext,#smcat{
+    display: block;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    #course_id{
+      background: url("{% static 'courses_sm.png' %}");
+      width: 100%;
+      height: 480px;
+      background-repeat: no-repeat;
+      background-position: 80% bottom;
+      background-size: auto 100%;
+    }
+    .largText{
+      font-family: 'Roboto', sans-serif;
+      font-size: 130%;
+      font-weight: 700;
+    }
+    .smtext{
+      display: none;
+    }
+    #smcat{
+      display: none;
+    }
+    .mdtext{
+      display: block;
+    }
+  }
+</style>
+<main>
 
-
-<div class="container-md">
-    <div class="my-5">
-        <div class="card text-center">
-            <div class="card-header">
-              welcome
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">LearnersHub</h5>
-              <p class="card-text">Over 1000+ courser in 500+ facalties. We provide 24/7 support. Easy to use tools</p>
-              <a href="#courses" class="btn btn-primary">Let's Start</a>
-            </div>
-            <div class="card-footer text-muted">
-              2 days ago
-            </div>
+  <div class="">
+    <div id="course_id" class="bg-secondary text-white d-flex justify-content-end">
+      <div class="smtext col-6 p-5">
+        <div class="h4">Lune Academy</div>
+        <div class="largText  ">Learn from the comfort of your own home with our 
+          <code> online</code> lessons!
+           
         </div>
+        <div class="mb-3" style="font-size:70%">
+          <a style="text-decoration:none;" href="https://www.freepik.com/free-photo/positive-college-student-has-dark-skin-carries-folders-book-points-with-cheerful-expression-aside-has-toothy-smile_11407358.htm#query=student&position=7&from_view=search&track=sph">Image by wayhomestudio</a> on Freepik
+        </div>
+          <a href="#courses" style="text-decoration:none" class=" text-light bg-primary rounded-pill py-2 px-5 col-4">
+           Get Started
+          </a>
+        <div>
+
+        </div>
+      </div>
+      <div class="mdtext text-dark col-8 p-5">
+        <div class="h4">Lune Academy</div>
+        <div class="largText mb-3 ">Learn from the comfort of your own home with our 
+          <code> online</code> lessons!
+        </div>
+        
+          <a href="#courses" style="text-decoration:none" class=" text-light btn btn-primary rounded-pill ">
+           Get Started
+          </a>
+        <div>
+
+        </div>
+      </div>
     </div>
-    <div id="courses" class="mb-3 py-5">
-        <div class="h4">Courses</div>
-        <div class="pt-3">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                {% for obj in object_list   %}
-                <div class="col">
-                  <div class="card h-100">
-                    <div class="card-img-top"  style="
-                    width:100%;
-                    height:150px;
-                    background-image: url({{obj.coverImg.url}});
-                    background-size: 100% auto;
-                    background-position: center center;
-                    "></div>
-                    <div class="card-body">
-                      <h5 class="card-title">{{obj.title}}</h5>
-                      <p class="card-text">Category: {{obj.category.title}}</p>
-                      <a class="btn btn-primary" href="{{obj.get_absolute_url}}">Go To Course</a>
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted">Last updated 3 mins ago</small>
+  </div>
+  <div id="smcat" class="p-4 px-md-5 d-flex border-bottom "> 
+    {% for c in course_category %}
+      <div id="smcat" class="bg-light px-4 mx-2 py-2 border rounded-pill">{{c.title}}</div>
+    {% endfor %}
+    <div class="mdtext"  style="font-size:100%">
+      <a style="text-decoration:none;" href="https://www.freepik.com/free-photo/positive-college-student-has-dark-skin-carries-folders-book-points-with-cheerful-expression-aside-has-toothy-smile_11407358.htm#query=student&position=7&from_view=search&track=sph">Image by wayhomestudio</a> on Freepik
+    </div>
+  </div>
+  <div class="container-md">
+
+      <div id="courses" class="mb-3 p-3 p-md-5">
+          <div class="h4">Courses</div>
+          <div class="pt-3">
+              <div class="row row-cols-1 row-cols-md-4 g-4">
+                  {% for obj in object_list   %}
+                  <div class="col">
+                    <div class="card h-100">
+                      <div class="card-img-top"  style="
+                      width:100%;
+                      height:150px;
+                      background-image: url({{obj.coverImg.url}});
+                      background-size: 100% auto;
+                      background-position: center center;
+                      "></div>
+                      <div class="card-body">
+                        <h5 class="card-title">{{obj.title}}</h5>
+                        <p class="card-text">Category: {{obj.category.title}}</p>
+                        <a class="btn btn-primary" href="{{obj.get_absolute_url}}">Go To Course</a>
+                      </div>
+                      <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                      </div>
                     </div>
                   </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-</div>
+                  {% endfor %}
+              </div>
+          </div>
+      </div>
+  </div>
 
-
+  
+</main>
 
 {% endblock body %}
 

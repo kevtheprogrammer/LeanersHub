@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Test 
+{% endblock title %}
+
+
+{% block body %}
+<div>
+    <div class="container-md">
+        <nav class="my-3 border-bottom" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{% url 'courses:index' %}" style="text-decoration: none;">Courses</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a href="{{object.lesson.course.get_absolute_url}}" style="text-decoration: none;">{{object.lesson.course.title}}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Quiz: {{object.title}}</li>
+            </ol>
+        </nav>
+
+        <div>
+            <form action="{{form.get_absolute_url}}" method="POST">   
+                <ol>
+                    {% for question in questions %}
+                    <li>
+                        <div>{{question.text}}</div>
+                        {% for answer in question.answermodel_set.all %}
+                            <input type="radio" name="{{ question.id }}" value="{{ answer.id }}"> {{ answer.answer_text }}<br>
+                        {% endfor %}
+                    </li>
+                    {% endfor  %}
+                </ol>    
+                <a href="" class="btn btn-primary">Submit</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock body %}

@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import ListView , DetailView ,View
 
+from tracker.models import CourseOutlineModel ,LessonWeekModel
+
 from .models import *
 
 
@@ -16,7 +18,6 @@ class CourserIndexView(ListView):
 		context['course_category'] = cat
 		return context
 
-
 class CourserDetailView(DetailView):
 	model = CourseModel
 	context_object_name = 'object_list'
@@ -26,8 +27,17 @@ class CourserDetailView(DetailView):
 		obj_id = self.get_object().id
 		cat = LessonModel.objects.filter(course__id = obj_id)
 		context['lessons'] = cat
+		context['outline'] = CourseOutlineModel.objects.filter(course__id = obj_id)
+		context['weeks'] = LessonWeekModel.objects.filter(lesson__course__id = obj_id)
 		return context
 
 class CourserLessonDetailView(DetailView):
 	model = LessonModel
 	context_object_name = 'object_list'
+
+
+
+class CourcePricingIndex(ListView):
+	model = PackModel
+	context_object_name = 'object_list'
+    

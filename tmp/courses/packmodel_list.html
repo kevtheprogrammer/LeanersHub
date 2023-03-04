@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+
+{% block body %}
+
+<div class="container-md">
+    <div class="my-5 display-4 d-flex justify-content-center">Pricing</div>
+    <div class="">
+        <div class="row">
+            {% for obj in object_list  %}
+            <div class="col-sm-4">
+                <div class="card border-primary ">
+                    <div class="card-header bg-transparent border-primary text-center">{{obj.title}}</div>
+                    <div class="card-body text-center text-primary">
+                        <p class="card-text h3">ZMK{{obj.price}}</p>
+                        <p class="card-text">{{obj.description}}</p>
+                        <a href="#" class="btn btn-primary">Get Start</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor  %}
+            
+          </div>
+    </div>
+
+</div>
+
+{% endblock body %}
+

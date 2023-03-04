@@ -26,7 +26,9 @@ INSTALLED_APPS = [
 
 LOCAL_APPS = [
     'acc',
+    'assessments',
     'courses',
+    'tracker',
     #...
     ]
 

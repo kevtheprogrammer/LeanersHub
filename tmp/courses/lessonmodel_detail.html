@@ -16,9 +16,11 @@ Courses Lesson
         background-position: center center;
         background-color: rgba(22, 1, 56, 0.5);
         background-blend-mode: multiply;
-    ">  
+        background-repeat:no-repeat;
+        ">  
         <div class="h1 text-white text-capitalize d-flex justify-content-center align-items-center " style="height:inherit">
-            {{object.title}}</div>
+            {{object.title}}
+        </div>
 
     </div>
     <div class="container-md">
@@ -44,9 +46,9 @@ Courses Lesson
             <div>by: {{object.author}}</div>
             <div class="h4 py-2">Objectives</div>
             <div>{{object.description}}</div>
-            <div class="py-2">{{object.video_link|safe}}</div>
+            <div class="py-2" style="width:100%">{{object.video_link|safe}}</div>
             <div class="h4">{{object.title}}</div>
-            <div>{{object.main_content}}</div>
+            <div>{{object.main_content|linebreaks|safe}}</div>
         </div>
     </div>
 </div>
