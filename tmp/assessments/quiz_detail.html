@@ -12,12 +12,14 @@ Test
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{% url 'courses:index' %}" style="text-decoration: none;">Courses</a></li>
               <li class="breadcrumb-item active" aria-current="page"><a href="{{object.lesson.course.get_absolute_url}}" style="text-decoration: none;">{{object.lesson.course.title}}</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Quiz: {{object.title}}</li>
+              <li class="breadcrumb-item active" aria-current="page"><a href="{{object.quiz.get_absolute_url}}" style="text-decoration: none;">Quiz: {{object.title}}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Score</li>
             </ol>
         </nav>
 
         <div>
             <form action="{{form.get_absolute_url}}" method="POST">   
+                {% csrf_token %} 
                 <ol>
                     {% for question in questions %}
                     <li>
@@ -28,7 +30,7 @@ Test
                     </li>
                     {% endfor  %}
                 </ol>    
-                <a href="" class="btn btn-primary">Submit</a>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>

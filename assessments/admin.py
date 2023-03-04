@@ -3,4 +3,4 @@ from django.contrib import admin
 
 from .models import * 
 
-admin.site.register([Quiz,QestionModel,AnswerModel ])
+admin.site.register([Quiz,QestionModel,AnswerModel,ScoreModel ])

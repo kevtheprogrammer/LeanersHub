@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Score   
+{% endblock title %}
+
+{% block body %}
+<div>
+    <div class="container-md">
+        <nav class="my-3 border-bottom" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{% url 'courses:index' %}" style="text-decoration: none;">Courses</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a href="{{object.quiz.lesson.course.get_absolute_url}}" style="text-decoration: none;">{{object.quiz.lesson.course.title}}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Quiz: {{object.quiz.title}}</li>
+            </ol>
+        </nav>
+
+        <div>
+
+            <div class="h5">Quiz: {{object.quiz}}</div>
+            <div class="h2">Score: {{object.score}}</div>
+            
+        </div>
+    </div>
+</div>
+{% endblock body %}

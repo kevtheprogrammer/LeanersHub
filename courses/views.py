@@ -35,6 +35,12 @@ class CourserLessonDetailView(DetailView):
 	model = LessonModel
 	context_object_name = 'object_list'
 
+	def get_context_data(self,*args, **kwargs):
+		context = super().get_context_data(**kwargs)
+		obj_id = self.get_object().course.id
+		context['obj_id'] =  self.get_object().id
+		context['weeks'] = LessonWeekModel.objects.filter(lesson__course__id = obj_id)
+		return context
 
 
 class CourcePricingIndex(ListView):
